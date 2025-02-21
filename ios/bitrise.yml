@@ -75,9 +75,29 @@ workflows:
           - distribution_method: app-store
           - automatic_code_signing: api-key
           - configuration: Release
-    - android-build@0.10.0:
+    - script@1:
+        title: Extract Bundle ID
         inputs:
-          - variant: release
+          - content: |-
+              #!/bin/bash
+              set -ex
+
+              # Extract the Bundle ID from the workspace and scheme
+              BUNDLE_ID=$(xcodebuild -showBuildSettings -workspace "$BITRISE_WORKSPACE_PATH" -scheme "$BITRISE_SCHEME" | grep PRODUCT_BUNDLE_IDENTIFIER | awk -F ' = ' '{print $2}' | tail -n 1)
+
+              if [ -z "$BUNDLE_ID" ]; then
+                echo "Error: Failed to extract Bundle ID."
+                exit 1
+              fi
+
+              # Export the Bundle ID as an environment variable for later steps
+              envman add --key BITRISE_APP_BUNDLE_ID --value "$BUNDLE_ID"
+
+              echo "Extracted Bundle ID: $BUNDLE_ID"
+    - deploy-to-itunesconnect-deliver@2:
+        inputs:
+          - ipa_path: "$BITRISE_IPA_PATH"
+          - bundle_id: "$BITRISE_APP_BUNDLE_ID"
     - deploy-to-bitrise-io@2: {}
     triggers:
       push:
