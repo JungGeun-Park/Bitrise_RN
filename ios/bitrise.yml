@@ -35,11 +35,10 @@ workflows:
               npm install
 
               # Install iOS dependencies using CocoaPods
-              cd ios
               pod install --repo-update
 
               # Copy custom Hermes files
-              HERMES_SOURCE="./AppSealingSDK/hermes"
+              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
               HERMES_DEST=$(find "./Pods/hermes-engine/destroot/Library/Frameworks/universal" -type f -name "hermes" -print | head -n 1)
               if [ -z "$HERMES_DEST" ]; then
                   echo "Error: Could not find hermes binary in universal directory"
@@ -131,7 +130,7 @@ workflows:
           - content: |-
               #!/bin/bash
               set -ex
-              cd "$BITRISE_SOURCE_DIR"
+              cd "$BITRISE_SOURCE_DIR/ios"
               chmod +x ./AppSealingSDK/generate_hash
               ./AppSealingSDK/generate_hash "$BITRISE_IPA_PATH"
     - deploy-to-itunesconnect-deliver@2:
