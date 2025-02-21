@@ -12,6 +12,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		258ACC542D685C290067AD0D /* appsealing.lic in Resources */ = {isa = PBXBuildFile; fileRef = 258ACC512D685C290067AD0D /* appsealing.lic */; };
+		258ACC552D685C290067AD0D /* AppSealingiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 258ACC532D685C290067AD0D /* AppSealingiOS.mm */; };
 		7699B88040F8A987B510C191 /* libPods-Bitrise_RN-Bitrise_RNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Bitrise_RN-Bitrise_RNTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		FA0F59403F583DE6A72B19C3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 710EB66C160B4609DFCC9B0B /* PrivacyInfo.xcprivacy */; };
@@ -39,6 +41,9 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Bitrise_RN/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Bitrise_RN/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Bitrise_RN-Bitrise_RNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bitrise_RN-Bitrise_RNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		258ACC512D685C290067AD0D /* appsealing.lic */ = {isa = PBXFileReference; lastKnownFileType = file; name = appsealing.lic; path = AppSealingSDK/appsealing.lic; sourceTree = "<group>"; };
+		258ACC522D685C290067AD0D /* AppSealingiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppSealingiOS.h; path = AppSealingSDK/AppSealingiOS.h; sourceTree = "<group>"; };
+		258ACC532D685C290067AD0D /* AppSealingiOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppSealingiOS.mm; path = AppSealingSDK/AppSealingiOS.mm; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Bitrise_RN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitrise_RN.debug.xcconfig"; path = "Target Support Files/Pods-Bitrise_RN/Pods-Bitrise_RN.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Bitrise_RN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitrise_RN.release.xcconfig"; path = "Target Support Files/Pods-Bitrise_RN/Pods-Bitrise_RN.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Bitrise_RN-Bitrise_RNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitrise_RN-Bitrise_RNTests.debug.xcconfig"; path = "Target Support Files/Pods-Bitrise_RN-Bitrise_RNTests/Pods-Bitrise_RN-Bitrise_RNTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +94,9 @@
 		13B07FAE1A68108700A75B9A /* Bitrise_RN */ = {
 			isa = PBXGroup;
 			children = (
+				258ACC512D685C290067AD0D /* appsealing.lic */,
+				258ACC522D685C290067AD0D /* AppSealingiOS.h */,
+				258ACC532D685C290067AD0D /* AppSealingiOS.mm */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -246,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258ACC542D685C290067AD0D /* appsealing.lic in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				FA0F59403F583DE6A72B19C3 /* PrivacyInfo.xcprivacy in Resources */,
@@ -398,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258ACC552D685C290067AD0D /* AppSealingiOS.mm in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -592,10 +602,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -668,10 +675,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
