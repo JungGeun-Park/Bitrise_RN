@@ -75,6 +75,8 @@ workflows:
           - distribution_method: app-store
           - automatic_code_signing: api-key
           - configuration: Release
+          - certificate_url_list: "file://./platforms/ios/distribution.p12"
+          - passphrase_list: "$CERTIFICATE_PASSWORD"
     - script@1:
         title: Extract Bundle ID
         inputs:
