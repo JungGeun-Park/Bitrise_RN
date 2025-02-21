@@ -20,19 +20,25 @@ workflows:
               pod install --repo-update
               cd ..
     - script@1:
-        title: Set Environment Variables
+        title: Set Project Path and Scheme
         inputs:
           - content: |-
               #!/bin/bash
               set -ex
 
-              # Define the workspace path and scheme for iOS
-              WORKSPACE_PATH="$BITRISE_SOURCE_DIR/ios/MyApp.xcworkspace"
-              SCHEME="MyApp"
+              # Automatically find the workspace path
+              WORKSPACE_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -name "*.xcworkspace" | head -n 1)
 
-              # Verify the workspace file exists
-              if [ ! -f "$WORKSPACE_PATH" ]; then
-                echo "Error: Workspace file not found at $WORKSPACE_PATH"
+              if [ -z "$WORKSPACE_PATH" ]; then
+                echo "Error: No .xcworkspace file found in the iOS directory."
+                exit 1
+              fi
+
+              # Automatically find the scheme name
+              SCHEME=$(xcodebuild -workspace "$WORKSPACE_PATH" -list | grep -A 1 "Schemes:" | tail -n 1 | xargs)
+
+              if [ -z "$SCHEME" ]; then
+                echo "Error: No scheme found in the workspace."
                 exit 1
               fi
 
