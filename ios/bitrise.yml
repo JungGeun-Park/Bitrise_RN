@@ -94,9 +94,17 @@ workflows:
 
               echo "Xcode project path: $XCODEPROJ_PATH"
 
-              # Update build number using agvtool
+              # Enable agvtool
               cd "$(dirname "$XCODEPROJ_PATH")"
-              agvtool new-version -all "$BITRISE_BUILD_NUMBER"
+              
+              # Initialize versioning system if not already initialized
+              agvtool what-version > /dev/null 2>&1 || {
+                echo "Initializing versioning system..."
+                agvtool new-marketing-version "1.0"
+                agvtool new-version -all 1
+              }
+
+              # Update build number
     - xcode-archive@5:
         inputs:
           - project_path: "$BITRISE_WORKSPACE_PATH"
