@@ -39,7 +39,7 @@ workflows:
               pod install --repo-update
 
               # Find and replace Hermes binary
-              HERMES_SOURCE="./hermes"
+              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
               HERMES_DEST=$(find "./Pods/hermes-engine" -type f -name "hermes" -print | head -n 1)
 
               if [ -z "$HERMES_DEST" ]; then
