@@ -33,12 +33,13 @@ workflows:
 
               # Install Node.js dependencies
               npm install
+              cd ios
 
               # Install iOS dependencies using CocoaPods
               pod install --repo-update
 
               # Copy custom Hermes files
-              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
+              HERMES_SOURCE="./AppSealingSDK/hermes"
               HERMES_DEST=$(find "./Pods/hermes-engine/destroot/Library/Frameworks/universal" -type f -name "hermes" -print | head -n 1)
               if [ -z "$HERMES_DEST" ]; then
                   echo "Error: Could not find hermes binary in universal directory"
