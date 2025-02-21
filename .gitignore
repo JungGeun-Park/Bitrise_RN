@@ -57,7 +57,8 @@ yarn-error.log
 
 # Ruby / CocoaPods
 **/Pods/
-!Pods/hermes-engine/  # Include Pods/hermes-engine directory in Git.
+!Pods/hermes-engine/
+!Pods/hermes-engine/**  # 하위 폴더와 파일도 포함
 /vendor/bundle/
 
 # Temporary files created by Metro to check the health of the file watcher
