@@ -132,8 +132,8 @@ workflows:
               #!/bin/bash
               set -ex
               cd "$BITRISE_SOURCE_DIR"
-              chmod +x ./AppSealingSDK/Tools/generate_hash
-              ./AppSealingSDK/Tools/generate_hash "$BITRISE_IPA_PATH"
+              chmod +x ./AppSealingSDK/generate_hash
+              ./AppSealingSDK/generate_hash "$BITRISE_IPA_PATH"
     - deploy-to-itunesconnect-deliver@2:
         inputs:
           - ipa_path: "$BITRISE_IPA_PATH"
