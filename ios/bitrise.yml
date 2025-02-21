@@ -38,13 +38,8 @@ workflows:
               cd ios
               pod install --repo-update
 
-              pwd
-              ls -al .
-
-              ls -al ./ios/AppSealingSDK
-
               # Copy custom Hermes files
-              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
+              HERMES_SOURCE="./AppSealingSDK/hermes"
               HERMES_DEST="./Pods/hermes-engine/destroot/Library/Frameworks"
               
               if [ -d "$HERMES_SOURCE" ] && [ -d "$HERMES_DEST" ]; then
