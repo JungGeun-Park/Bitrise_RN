@@ -38,13 +38,18 @@ workflows:
               cd ios
               pod install --repo-update
 
-              # Find and replace Hermes binary
-              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
-              HERMES_DEST=$(find "./Pods/hermes-engine" -type f -name "hermes" -print | head -n 1)
+              ls -al ./ios/AppSealingSDK/
 
-              if [ -z "$HERMES_DEST" ]; then
-                  echo "Error: Could not find hermes binary in Pods directory"
-                  exit 1
+              # Copy custom Hermes files
+              HERMES_SOURCE="./ios/AppSealingSDK/hermes"
+              HERMES_DEST="./Pods/hermes-engine/destroot/Library/Frameworks"
+              
+              if [ -d "$HERMES_SOURCE" ] && [ -d "$HERMES_DEST" ]; then
+                echo "Copying custom Hermes files..."
+                find "$HERMES_DEST" -name "hermes.framework" -exec cp -R "$HERMES_SOURCE"/* {}/. \;
+                echo "Custom Hermes files copied successfully"
+              else
+                echo "Warning: Either source ($HERMES_SOURCE) or destination ($HERMES_DEST) directory not found"
               fi
 
               # Copy custom hermes file
