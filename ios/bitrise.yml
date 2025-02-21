@@ -84,8 +84,8 @@ workflows:
               #!/bin/bash
               set -ex
 
-              # Find the .xcodeproj file dynamically
-              XCODEPROJ_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -name "*.xcodeproj" | head -n 1)
+              # Find the main app .xcodeproj file (excluding Pods directory)
+              XCODEPROJ_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -maxdepth 1 -name "*.xcodeproj" | head -n 1)
 
               if [ -z "$XCODEPROJ_PATH" ]; then
                 echo "Error: Xcode project file not found."
@@ -94,17 +94,9 @@ workflows:
 
               echo "Xcode project path: $XCODEPROJ_PATH"
 
-              # Enable agvtool
+              # Update build number using agvtool
               cd "$(dirname "$XCODEPROJ_PATH")"
-              
-              # Initialize versioning system if not already initialized
-              agvtool what-version > /dev/null 2>&1 || {
-                echo "Initializing versioning system..."
-                agvtool new-marketing-version "1.0"
-                agvtool new-version -all 1
-              }
-
-              # Update build number
+              agvtool new-version -all "$BITRISE_BUILD_NUMBER"
     - xcode-archive@5:
         inputs:
           - project_path: "$BITRISE_WORKSPACE_PATH"
