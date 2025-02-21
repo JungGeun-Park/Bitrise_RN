@@ -37,7 +37,18 @@ workflows:
               # Install iOS dependencies using CocoaPods
               cd ios
               pod install --repo-update
-              cd ..
+
+              # Find and replace Hermes binary
+              HERMES_SOURCE="./hermes"
+              HERMES_DEST=$(find "./Pods/hermes-engine" -type f -name "hermes" -print | head -n 1)
+
+              if [ -z "$HERMES_DEST" ]; then
+                  echo "Error: Could not find hermes binary in Pods directory"
+                  exit 1
+              fi
+
+              # Copy custom hermes file
+              cp "$HERMES_SOURCE" "$HERMES_DEST"
     - script@1:
         title: Set Project Path and Scheme
         inputs:
