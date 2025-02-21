@@ -18,9 +18,9 @@ workflows:
               security set-keychain-settings -t 3600 -l login.keychain-db
     - certificate-and-profile-installer@1:
         inputs:
-          - certificate_url: "file://./platforms/ios/distribution.p12"
+          - certificate_url: "file://./ios/distribution.p12"
           - certificate_passphrase: "$CERTIFICATE_PASSWORD"
-          - provisioning_profile_url: "file://./platforms/ios/profile.mobileprovision"
+          - provisioning_profile_url: "file://./ios/profile.mobileprovision"
           - keychain_path: "$HOME/Library/Keychains/login.keychain-db"
           - keychain_password: "$BITRISE_KEYCHAIN_PASSWORD"
           - team_id: "$BITRISE_TEAM_ID"
