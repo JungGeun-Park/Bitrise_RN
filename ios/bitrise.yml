@@ -23,7 +23,6 @@ workflows:
           - provisioning_profile_url: "file://./ios/profile.mobileprovision"
           - keychain_path: "$HOME/Library/Keychains/login.keychain-db"
           - keychain_password: "$BITRISE_KEYCHAIN_PASSWORD"
-          - team_id: "$BITRISE_TEAM_ID"
     - script@1:
         title: Install Dependencies
         inputs:
@@ -151,5 +150,4 @@ meta:
 app:
   envs:
   - BITRISE_KEYCHAIN_PASSWORD: anything
-  - BITRISE_TEAM_ID: 22X77ENQ2H
   - CERTIFICATE_PASSWORD: 123456
