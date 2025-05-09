@@ -12,9 +12,9 @@ workflows:
               #!/bin/bash
               set -ex
               security delete-keychain login.keychain-db || true
-              security create-keychain -p "$BITRISE_KEYCHAIN_PASSWORD" login.keychain-db
+              security create-keychain -p "nopassword" login.keychain-db
               security default-keychain -s login.keychain-db
-              security unlock-keychain -p "$BITRISE_KEYCHAIN_PASSWORD" login.keychain-db
+              security unlock-keychain -p "nopassword" login.keychain-db
               security set-keychain-settings -t 3600 -l login.keychain-db
     - certificate-and-profile-installer@1:
         inputs:
@@ -22,7 +22,7 @@ workflows:
           - certificate_passphrase: "$CERTIFICATE_PASSWORD"
           - provisioning_profile_url: "file://./ios/profile.mobileprovision"
           - keychain_path: "$HOME/Library/Keychains/login.keychain-db"
-          - keychain_password: "$BITRISE_KEYCHAIN_PASSWORD"
+          - keychain_password: "nopassword"
     - script@1:
         title: Install Dependencies
         inputs:
@@ -149,5 +149,4 @@ meta:
     machine_type_id: g2-m1.4core
 app:
   envs:
-  - BITRISE_KEYCHAIN_PASSWORD: anything
-  - CERTIFICATE_PASSWORD: 123456
+  - CERTIFICATE_PASSWORD: $BITRISE_CERTIFICATE_PASSWORD
