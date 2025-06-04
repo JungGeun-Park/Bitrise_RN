@@ -62,11 +62,19 @@ workflows:
                 exit 1
               fi
 
-              # Automatically find the scheme name
-              SCHEME=$(xcodebuild -workspace "$WORKSPACE_PATH" -list | grep -A 1 "Schemes:" | tail -n 1 | xargs)
+              # Automatically find the .xcodeproj path
+              XCODEPROJ_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -name "*.xcodeproj" | head -n 1)
+
+              if [ -z "$XCODEPROJ_PATH" ]; then
+                echo "Error: No .xcodeproj file found in the iOS directory."
+                exit 1
+              fi
+
+              # Automatically find the scheme name from xcodeproj
+              SCHEME=$(xcodebuild -project "$XCODEPROJ_PATH" -list | awk '/Schemes:/,0' | tail -n +2 | head -n 1 | xargs)
 
               if [ -z "$SCHEME" ]; then
-                echo "Error: No scheme found in the workspace."
+                echo "Error: No scheme found in the xcodeproj."
                 exit 1
               fi
 
