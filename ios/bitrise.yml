@@ -55,7 +55,7 @@ workflows:
               set -ex
 
               # Automatically find the workspace path
-              WORKSPACE_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -name "*.xcworkspace" | head -n 1)
+              WORKSPACE_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -maxdepth 1 -name "*.xcworkspace" | head -n 1)
 
               if [ -z "$WORKSPACE_PATH" ]; then
                 echo "Error: No .xcworkspace file found in the iOS directory."
@@ -63,7 +63,7 @@ workflows:
               fi
 
               # Automatically find the .xcodeproj path
-              XCODEPROJ_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -name "*.xcodeproj" | head -n 1)
+              XCODEPROJ_PATH=$(find "$BITRISE_SOURCE_DIR/ios" -maxdepth 1 -name "*.xcodeproj" | head -n 1)
 
               if [ -z "$XCODEPROJ_PATH" ]; then
                 echo "Error: No .xcodeproj file found in the iOS directory."
